@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ station_id }} Data</title>
+</head>
+<body>
+    <h1>{{ station_id }} Data</h1>
+    {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Sensor</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in data.items() %}
+                    {% if key not in ["station_id", "timestamp"] %}
+                        <tr>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No data available for this station.</p>
+    {% endif %}
+    <a href="/">Back to home</a>
+</body>
+</html>

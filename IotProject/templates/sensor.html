@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ sensor }} Data</title>
+</head>
+<body>
+    <h1>{{ sensor }} Data (Last 5 Hours)</h1>
+    {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Station ID</th>
+                    <th>Timestamp</th>
+                    <th>{{ sensor }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.station_id }}</td>
+                        <td>{{ item.timestamp }}</td>
+                        <td>{{ item[sensor] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No data available for this sensor.</p>
+    {% endif %}
+    <a href="/">Back to home</a>
+</body>
+</html>
